@@ -1,6 +1,6 @@
 # Hospital Simulation ROS 2
 
-Este paquete de ROS 2 (`hospital_sim`) contiene un entorno de simulación completo de un hospital para **Ignition Gazebo (Fortress)**. Incluye un mapa detallado (`.sdf`) y todos los modelos 3D necesarios (camillas, máquinas de rayos X, mobiliario) integrados en el paquete para funcionar sin dependencias externas.
+Este paquete de ROS 2 (`hospital_sim`) contiene un entorno de simulación completo de un hospital para **Ignition Gazebo (Fortress)**. Incluye un mapa detallado (`.sdf`) y todos los modelos 3D necesarios (camillas, máquinas, mobiliario) integrados en el paquete.
 
 ## 📋 Requisitos
 
@@ -37,34 +37,25 @@ Este paquete de ROS 2 (`hospital_sim`) contiene un entorno de simulación comple
 
 ## 🚀 Ejecución
 
-Para lanzar la simulación, simplemente ejecuta el archivo de lanzamiento principal. Este script se encarga automáticamente de configurar las variables de entorno (`IGN_GAZEBO_RESOURCE_PATH`) para que Gazebo encuentre los modelos 3D incluidos.
+Para lanzar la simulación, simplemente ejecuta el archivo de lanzamiento principal. Este script detecta automáticamente la ubicación de los modelos en tu carpeta `src` para evitar problemas de rutas en la instalación.
 
 ```bash
 ros2 launch hospital_sim hospital.launch.py
+
 ```
 
 ## 📂 Estructura del Paquete
 
 * **`launch/`**: Contiene `hospital.launch.py`, encargado de iniciar Ignition Gazebo y cargar el mundo.
-* **`worlds/`**: Contiene `ros2_hospital_map_extended.sdf`, el archivo principal del entorno.
-* **`models/`**: Contiene los activos 3D (meshes, texturas, configs).
-* Nota: Todos los nombres de carpetas han sido normalizados a minúsculas para compatibilidad con Linux.
+* **`worlds/`**: Contiene `2026_hospital.sdf`, el archivo principal del entorno.
+* **`models/`**: Contiene los activos 3D (meshes, texturas, configs) necesarios para la simulación.
 
+## 🐛 Notas Importantes
 
+* **Rutas de Modelos:** El archivo `launch` está configurado para buscar los modelos en `src/hospital_sim/models`. Si mueves el paquete fuera de un workspace estándar, podrías necesitar ajustar la ruta en `hospital.launch.py`.
+* **Drivers Gráficos:** Es normal ver advertencias `libEGL` o `ODE Message` en la terminal al arrancar; no afectan a la simulación.
 
-## 🐛 Solución de Problemas Comunes
+## ⚖️ Créditos
 
-**Los objetos se ven negros o no aparecen:**
-Asegúrate de haber compilado y hecho `source` correctamente. El archivo `launch` inyecta la ruta de la carpeta `models` en las variables de entorno de Ignition. Si ejecutas el archivo `.sdf` manualmente sin el launcher, necesitarás exportar la variable tú mismo:
-
-```bash
-export IGN_GAZEBO_RESOURCE_PATH=$HOME/SocialTech_C/src/hospital_sim/models
-
-```
-
-## ⚖️ Créditos y Licencia
-
-* Los modelos 3D médicos y mobiliario provienen originalmente del repositorio [AWS Robomaker Hospital World](https://github.com/aws-robotics/aws-robomaker-hospital-world).
-* Adaptación y configuración para ROS 2 Humble realizada por Narcis Abella.
-
-```
+* Mapa y configuración ROS 2 realizados por Narcis Abella.
+* Los modelos 3D (activos médicos y mobiliario) provienen de la colección **`SocialTech-Gazebo`**.
