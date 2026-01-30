@@ -1,8 +1,22 @@
+# ROS 2 build folders (por si acaso compilas dentro)
 build/
 install/
 log/
+
+# Python cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# Configs de sistema y editores
 .vscode/
+.idea/
 .DS_Store
+*~
 *.swp
+.ros/
+
+# Archivos generados
+*.pgm
+*.yaml
