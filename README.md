@@ -45,7 +45,7 @@ El proyecto ha sido optimizado específicamente para ejecutarse en hardware **NV
 ## 🚀 Ejecución
 
 ### 1. Lanzamiento Estándar (Modo Lite + Headless)
-Por defecto, el sistema está configurado para **rendimiento máximo en Jetson**. Esto carga el mapa ligero (solo paredes) y ejecuta Gazebo en segundo plano (sin ventana 3D), visualizando todo en RViz.
+Por defecto, el sistema está configurado para **rendimiento máximo en Jetson**. Esto carga el mapa ligero (solo paredes).
 
 ```bash
 ros2 launch hospital_sim hospital.launch.py
